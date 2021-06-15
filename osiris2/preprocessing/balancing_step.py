@@ -163,8 +163,9 @@ def balance(X,y,mode='under'):
         
     tc = target_classes[target_classes == True].index
     n = len(tc) -1
-    i = 0
-    while i < n:
+    #i = 0
+    i = n
+    while i <= n:
     
         tc_1 = tc[n-i]
         tc_2 = tc[n-i-1]
@@ -206,7 +207,7 @@ def balance(X,y,mode='under'):
 # In[94]:
 
 
-balance(X,y,mode='under')
+#balance(X,y,mode='under')
 
 
 # In[103]:
