@@ -164,12 +164,13 @@ def balance(X,y,mode='under'):
     tc = target_classes[target_classes == True].index
     n = len(tc) -1
     #i = 0
-    i = n
+    i = n -1
     while i <= n:
     
         tc_1 = tc[n-i]
         tc_2 = tc[n-i-1]
-        
+        print(tc_1)
+        print(tc_2)
         idx = None
         if ((n+1) % 2 != 0) and (i == 0):
             tc_3 = tc[n-i-2]
@@ -193,9 +194,10 @@ def balance(X,y,mode='under'):
             X_res.to_csv('source/X_' + mode + '.csv')
             y_res.to_csv('source/y_' + mode + '.csv')
         else:
+        	print("saving results")
             X_res.to_csv('source/X_' + mode + '.csv', header=False, mode='a')
             y_res.to_csv('source/y_' + mode + '.csv', header=False, mode='a')
-        
+        	
         # do not take the n-1 element if the number of class is odd
         if ((n+1) % 2 != 0) and (i == 0):
             i = i + 3
