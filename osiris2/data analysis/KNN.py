@@ -13,12 +13,21 @@ import pickle
 from sklearn.metrics import precision_score, recall_score, accuracy_score
 
 
-df = pd.read_csv('source/dataset_60_balanced.csv')
+#df = pd.read_csv('source/dataset_60_balanced.csv')
+
+X_train = pd.read_csv('output/X_train_60.csv')
+X_test = pd.read_csv('output/X_test_60.csv')
+y_train = pd.read_csv('output/y_train_60.csv')
+y_test = pd.read_csv('output/y_test_60.csv')
 
 columns = ['class', 'course','speed','row','column','hour_sin','hour_cos','day_sin','day_cos']
-X = df[columns]
-Y = df['target']
+#X = df[columns]
+#Y = df['target']
+X_train = X_train[columns]
+y_train = y_train['target']
 
+X_test = X_test[columns]
+y_test = y_test['target']
 
 # In[85]:
 
@@ -31,28 +40,28 @@ n_classes = len(Y.unique())
 # In[111]:
 
 
-burst = 1000
-i = 1
-N = 100 # test size per class
-cursor = burst
-y_train = pd.DataFrame()
-y_test =  pd.DataFrame()
-X_train = pd.DataFrame()
-X_test =  pd.DataFrame()
-for c in range(0, n_classes):
-    for i in range(0,burst):
-        if i < burst - N:
-            y_train = y_train.append([Y.loc[burst*c + i]])
-            X_train = X_train.append(X.loc[burst*c + i])
-        else:
-            X_test = X_test.append(X.loc[burst*c + i])
-            y_test = y_test.append([Y.loc[burst*c + i]])
+#burst = 1000
+#i = 1
+#N = 100 # test size per class
+#cursor = burst
+#y_train = pd.DataFrame()
+#y_test =  pd.DataFrame()
+#X_train = pd.DataFrame()
+#X_test =  pd.DataFrame()
+#for c in range(0, n_classes):
+#    for i in range(0,burst):
+#        if i < burst - N:
+#            y_train = y_train.append([Y.loc[burst*c + i]])
+#            X_train = X_train.append(X.loc[burst*c + i])
+#        else:
+#            X_test = X_test.append(X.loc[burst*c + i])
+#            y_test = y_test.append([Y.loc[burst*c + i]])
 
 
-X_train.to_csv('output/X_train_60.csv')
-X_test.to_csv('output/X_test_60.csv')
-y_train.to_csv('output/y_train_60.csv')
-y_test.to_csv('output/y_test_60.csv')
+#X_train.to_csv('output/X_train_60.csv')
+#X_test.to_csv('output/X_test_60.csv')
+#y_train.to_csv('output/y_train_60.csv')
+#y_test.to_csv('output/y_test_60.csv')
 
 
 # In[118]:
