@@ -24,10 +24,10 @@ columns = ['class', 'course','speed','row','column','hour_sin','hour_cos','day_s
 #X = df[columns]
 #Y = df['target']
 X_train = X_train[columns]
-y_train = y_train['target']
+y_train = y_train['0']
 
 X_test = X_test[columns]
-y_test = y_test['target']
+y_test = y_test['0']
 
 # In[85]:
 
