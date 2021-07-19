@@ -32,7 +32,7 @@ y_test = y_test['0']
 # In[85]:
 
 
-n_classes = len(Y.unique())
+#n_classes = len(Y.unique())
 
 
 # # Split Train and Test
