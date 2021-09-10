@@ -14,12 +14,12 @@ from sklearn.metrics import precision_score, recall_score, accuracy_score
 
 
 #df = pd.read_csv('source/dataset_60_balanced.csv')
-
+print('Reading Datasets')
 X_train = pd.read_csv('output/X_train_60.csv')
 X_test = pd.read_csv('output/X_test_60.csv')
 y_train = pd.read_csv('output/y_train_60.csv')
 y_test = pd.read_csv('output/y_test_60.csv')
-
+print('Done')
 columns = ['class', 'course','speed','row','column','hour_sin','hour_cos','day_sin','day_cos']
 #X = df[columns]
 #Y = df['target']
@@ -29,7 +29,6 @@ y_train = y_train['0']
 X_test = X_test[columns]
 y_test = y_test['0']
 
-# In[85]:
 
 
 #n_classes = len(Y.unique())
@@ -68,16 +67,16 @@ y_test = y_test['0']
 
 
 
-
+print('Training')
 classifier = KNeighborsClassifier()
-parameters = {  'n_neighbors'   : np.arange(3, 8),
+parameters = {  'n_neighbors'   : np.arange(3, 5),
                 'weights'       : ['uniform', 'distance'],
-                'metric'        : ['euclidean', 'manhattan', 'chebyshev', 'minkowski'],
-                'algorithm'     : ['auto', 'ball_tree', 'kd_tree'],
+    #            'metric'        : ['euclidean', 'manhattan', 'chebyshev', 'minkowski'],
+    #            'algorithm'     : ['auto', 'ball_tree', 'kd_tree'],
             }
-clf = GridSearchCV(classifier, parameters, cv = 5)
+clf = GridSearchCV(classifier, parameters, cv = 5, n_jobs = 3)
 clf.fit(X_train, y_train.values.ravel())
-
+print('Done')
 
 
 
@@ -87,9 +86,9 @@ clf.fit(X_train, y_train.values.ravel())
 # In[120]:
 
 
-
-pickle.dump(model, open("output/knn.sav", 'wb'))
-
+print('Saving')
+pickle.dump(clf.best_estimator_, open("output/knn.sav", 'wb'))
+print('Done')
 
 # # Load the saved model
 
@@ -97,44 +96,32 @@ pickle.dump(model, open("output/knn.sav", 'wb'))
 
 
 # open a file, where you stored the pickled data
+print('Open Model')
 file = open('output/knn.sav', 'rb')
 
 # dump information to that file
 loaded_model = pickle.load(file)
-
+print('Done')
 
 # # Predict Unseen
 
 # In[122]:
 
 
-y_score = model.predict_proba(X_test)
+y_score = loaded_model.predict_proba(X_test)
 
-
-# In[123]:
 
 
 import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve
-from scikitplot.metrics import plot_roc,auc
-from scikitplot.metrics import plot_precision_recall
 
-
-# Plot metrics 
-plot_roc(y_test.values.ravel(), y_score)
-plt.savefig('output/roc.png')
-plt.show()
-    
-plot_precision_recall(y_test.values.ravel(), y_score)
-plt.savefig('output/pr.png')
-plt.show()
 
 
 # In[133]:
 
 
 
-y_pred = model.predict(X_test)
+y_pred = loaded_model.predict(X_test)
 precision = precision_score(y_test.values.ravel(),y_pred, average='weighted')
 recall = recall_score(y_test.values.ravel(),y_pred, average='weighted')
 accuracy = accuracy_score(y_test.values.ravel(),y_pred)
