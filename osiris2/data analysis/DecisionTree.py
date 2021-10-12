@@ -112,7 +112,6 @@ y_score = loaded_model.predict_proba(X_test)
 
 
 
-import matplotlib.pyplot as plt
 from sklearn.metrics import roc_curve
 
 
