@@ -70,8 +70,8 @@ y_test = y_test['0']
 
 print('Training')
 classifier = DecisionTreeClassifier()
-parameters = {  'criterion'       : 'entropy',
-                'splitter'        : 'best',
+parameters = {  'criterion'       : ['entropy'],
+                'splitter'        : ['best'],
                 'max_depth'       : np.arange(8,32,step=2), # a great number may generate overfitting
                 'min_samples_leaf': np.arange(1,10)
                 }
