@@ -70,9 +70,10 @@ y_test = y_test['0']
 
 print('Training')
 classifier = DecisionTreeClassifier()
-parameters = {  'criterion'       : [ 'gini', 'entropy'],
-                'splitter'        : [ 'best', 'random'],
-                'max_depth'       : np.arange(1,10,step=2) # a great number may generate overfitting
+parameters = {  'criterion'       : 'entropy',
+                'splitter'        : 'best',
+                'max_depth'       : np.arange(8,32,step=2), # a great number may generate overfitting
+                'min_samples_leaf': np.arange(1,10)
                 }
 clf = GridSearchCV(classifier, parameters, cv = 5, n_jobs = 2)
 clf.fit(X_train, y_train.values.ravel())
