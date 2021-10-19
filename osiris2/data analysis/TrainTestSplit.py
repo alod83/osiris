@@ -12,7 +12,7 @@ columns = ['class', 'course','speed','row','column','hour_sin','hour_cos','day_s
 #gets a random 80% of the entire set
 df_train = df.sample(frac=0.8, random_state=1)
 #gets the left out portion of the dataset
-df_test = df.loc[~df.index.isin(X_train.index)]
+df_test = df.loc[~df.index.isin(df_train.index)]
 
 X_train = df_train[columns]
 X_test = df_test[columns]
