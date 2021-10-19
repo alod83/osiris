@@ -15,10 +15,10 @@ from sklearn.metrics import precision_score, recall_score, accuracy_score
 
 #df = pd.read_csv('source/dataset_60_balanced.csv')
 print('Reading Datasets')
-X_train = pd.read_csv('output/X_train_60.csv')
-X_test = pd.read_csv('output/X_test_60.csv')
-y_train = pd.read_csv('output/y_train_60.csv')
-y_test = pd.read_csv('output/y_test_60.csv')
+X_train = pd.read_csv('output/X_train_60_random.csv')
+X_test = pd.read_csv('output/X_test_60_random.csv')
+y_train = pd.read_csv('output/y_train_60_random.csv')
+y_test = pd.read_csv('output/y_test_60_random.csv')
 print('Done')
 columns = ['class', 'course','speed','row','column','hour_sin','hour_cos','day_sin','day_cos']
 #X = df[columns]
@@ -69,7 +69,7 @@ y_test = y_test['0']
 
 print('Training')
 classifier = KNeighborsClassifier()
-parameters = {  'n_neighbors'   : np.arange(3, 5),
+parameters = {  'n_neighbors'   : np.arange(3, 10),
                 'weights'       : ['uniform', 'distance'],
     #            'metric'        : ['euclidean', 'manhattan', 'chebyshev', 'minkowski'],
     #            'algorithm'     : ['auto', 'ball_tree', 'kd_tree'],
