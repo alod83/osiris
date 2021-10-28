@@ -1,0 +1,104 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Osiris Route Predictor</title>
+		<link type="text/css" href="css/index.css" rel="stylesheet">
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
+		<script src="http://d3js.org/topojson.v1.min.js"></script>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+      color	: #FFFFFF;
+    }
+    
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      height: 100%;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+	
+	body {
+	  font: 400 15px/1.8 Lato, sans-serif;
+      
+	}
+	
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <h1>SRP viewer</h1>
+</nav>
+  
+<div class="container-fluid text-left">    
+  <div class="row content">
+    <div class="col-sm-4 sidenav">
+    	<table class="parameters">
+    		<tr>
+    			<td>Latitude</td>
+    			<td><input class="lat" size="4" value="35.76" type="text"></td>
+    		</tr>
+    		<tr>
+    			<td>Longitude</td>
+    			<td><input class="lon" size="4" value="14.7" type="text"></td>
+    		</tr>
+    		<tr>
+    			<td><a target="_blank" href="http://wafi.iit.cnr.it/webvis/lab/workspace/726ff0ae7a00b72d64a05ad2e9a74239/">Speed (knot) </a></td>
+    			<td><input class="speed" size="3" value="5" type="text"></td>
+    		</tr>
+    		<tr>
+    			<td><a target="_blank" href="http://wafi.iit.cnr.it/webvis/lab/workspace/726ff0ae7a00b72d64a05ad2e9a74239/">Course (°) </a></td>
+    			<td><input class="course" size="3" value="250" type="text"></td>
+    		</tr>
+    		<tr>
+    			<td>Delta (minutes)</td>
+    			<td><select class="time" size="1" value="0">
+      				<option default value=60>60</option>
+    			</select></td>
+    		</tr>
+    		<tr>
+    			<td>Class</td> 
+    			<td><select class="basic_class" size="1" value="0">
+      				<option value="0">small</option>
+      				<option value="1">big</option>
+    			</select></td>
+    		</tr>
+    		<tr>
+    			<td>Classifier</td> 
+    			<td><select class="algorithm" size="1" value="knn">
+      				<option default value="knn">knn</option>
+      			</select></td>
+    		</tr>
+    			
+    		<tr>
+    			<td>Date</td>
+    			<td><input type="datetime-local" class="datetime" step="1"></td>
+    		</tr>
+    	</table>
+    </div>
+    <div class="col-sm-8">
+    	<svg></svg>
+    	<script src="js/index.js"></script>
+
+    </div>
+  </div>
+</div>
+
+</body></html>
