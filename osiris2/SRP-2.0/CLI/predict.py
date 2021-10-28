@@ -112,8 +112,8 @@ if no_feature_collection is False:
 	result = dumps(result)
 	print_result(args.output,result)
 
-if verbose:
-	seconds = datetime.now() - startTime
-	print (f"Number of seconds to execute the script: {seconds}")
+#if verbose:
+#	seconds = datetime.now() - startTime
+#	print (f"Number of seconds to execute the script: {seconds}")
 
 
