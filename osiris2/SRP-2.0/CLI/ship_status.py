@@ -2,6 +2,7 @@ from math import floor
 from math import copysign
 from datetime import datetime
 import numpy as np
+import pandas as pd
 
 class ShipStatus:
     cx = 0.1
@@ -85,7 +86,17 @@ class ShipStatus:
         return hour_sin,hour_cos,day_sin,day_cos
 
     def get_status(self):
-        return [self.class_value, self.course,self.speed,self.row,self.column,self.hour_sin,self.hour_cos,self.day_sin,self.day_cos]
+        status = {}
+        status['class'] = self.class_value
+        status['course'] = self.course
+        status['speed'] = self.speed
+        status['row'] = self.row
+        status['column'] = self.column
+        status['hour_sin'] = self.hour_sin
+        status['hour_cos'] = self.hour_cos
+        status['day_sin'] = self.day_sin
+        status['day_cos'] = self.day_cos
+        return pd.DataFrame(status.items())
 
     def get_cx(self):
         return self.cx
