@@ -23,7 +23,7 @@
 
 import pandas as pd
 df = pd.read_csv('resources/ais_data_clean.csv')
-
+import numpy as np
 
 # In[3]:
 
@@ -188,7 +188,8 @@ df.drop(columns=['width', 'length'], axis=1,inplace=True)
 
 
 from sklearn.preprocessing import MaxAbsScaler
-from sklearn.externals import joblib
+#from sklearn.externals import joblib
+import joblib
 
 columns = ['course', 'speed']
 for column in columns:
