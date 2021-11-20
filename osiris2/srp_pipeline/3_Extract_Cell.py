@@ -45,8 +45,8 @@ def get_position(x,ctype,cx):
 # In[ ]:
 
 
-df['row'] = df.apply(lambda x: get_position(x['latitude'],'lat',cx), axis=1)
-df['column'] = df.apply(lambda x: get_position(x['longitude'],'lng',cx), axis=1)
+df['row'] = df['latitude'].apply(lambda x: get_position(x,'lat',cx))
+df['column'] = df['longitude'].apply(lambda x: get_position(x,'lng',cx))
 
 
 # In[90]:
