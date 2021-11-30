@@ -12,8 +12,8 @@ do
     current_routes=${routes[@]:$start:$burst}
     for route in $current_routes;
     do
-	    #printf "Route $route\n"
-	    #python3 build_next_status.py -r $route &
+	    printf "Route $route\n"
+	    python3 build_next_status.py -r $route &
     done
     start=$((current + burst))
 done
