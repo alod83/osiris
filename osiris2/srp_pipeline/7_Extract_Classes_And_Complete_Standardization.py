@@ -11,7 +11,7 @@
 
 import pandas as pd
 
-df = pd.read_csv('source/ais_data_next_status_60.csv')
+df = pd.read_csv('resources/ais_data_next_status_60.csv')
 
 
 # In[20]:
@@ -45,33 +45,11 @@ df['target_label'].head()
 # In[11]:
 
 
-target_classes = df['target_label'].value_counts() > 100
-tc = target_classes[target_classes == True].index
-
-
-# In[12]:
-
-
-len(tc)
-
-
-# In[13]:
-
-
-def filter_class(x):
-    return x in tc
-
-
-# In[14]:
-
-
-df['delete'] = df['target_label'].apply(lambda x: filter_class(x))
-
 
 # In[15]:
 
 
-df = df[df['delete']]
+
 
 
 # # OneHot Encoding
@@ -79,9 +57,9 @@ df = df[df['delete']]
 # In[5]:
 
 
-from sklearn.preprocessing import OneHotEncoding
+from sklearn.preprocessing import LabelEncoder
 
-encoder = OneHotEncoder()
+encoder = LabelEncoder()
 target = encoder.fit_transform([df['target_label'].tolist()])[0]
 
 
@@ -182,7 +160,7 @@ df['day_cos'] = np.cos(2 * np.pi * df['date_time'].dt.dayofyear/365.0)
 
 
 columns = ['class', 'course', 'speed', 'row','column','hour_sin','hour_cos','day_sin','day_cos', 'month_sin', 'month_cos','target', 'next_status_60_column', 'next_status_60_row']
-df.to_csv('source/dataset_60.csv', columns = columns)
+df.to_csv('resources/dataset_60.csv', columns = columns)
 
 
 # # Bibliography
