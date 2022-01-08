@@ -60,7 +60,7 @@ df['target_label'].head()
 from sklearn.preprocessing import LabelEncoder
 
 encoder = LabelEncoder()
-target = encoder.fit_transform([df['target_label'].tolist()])[0]
+target = encoder.fit_transform([df['target_label'].tolist()])
 
 
 # In[6]:
@@ -86,7 +86,7 @@ len(target)
 
 
 def get_target(x):
-    return encoder.transform([x]).tolist()[0].index(1)
+    return encoder.transform([x]).tolist()[0]
 
 
 # In[11]:
